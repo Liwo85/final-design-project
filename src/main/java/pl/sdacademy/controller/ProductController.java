@@ -32,6 +32,6 @@ public class ProductController {
     @PostMapping("/pageAdd")
     public String addProduct(@ModelAttribute("product") Product product){
         productRepository.save(product);
-        return "/page_add";
+        return "page_add_result";
     }
 }
