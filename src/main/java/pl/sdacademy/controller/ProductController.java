@@ -23,10 +23,15 @@ public class ProductController {
         model.addAttribute("products", products);
         return "page";
     }
+
+    @GetMapping("/pageAdd")
+    public String productAddForm(@ModelAttribute("product") Product product) {
+        return "page_add_form";
+    }
+
     @PostMapping("/pageAdd")
     public String addProduct(@ModelAttribute("product") Product product){
         productRepository.save(product);
         return "/page_add";
     }
-
 }
