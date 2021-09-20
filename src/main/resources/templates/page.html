@@ -7,12 +7,16 @@
 <body>
 
 <table>
+    <p><a th:href="@{/login}">Loguj</a></p>
+    <p><a th:href="@{/registration}">Zarejestruj</a></p>
+
     <tr>
         <th>Nazwa</th>
         <th>Opis</th>
         <th>Cena</th>
         <th>Rodzaj produktu</th>
     </tr>
+
     <tr th:each="product: ${products}">
         <td th:text="${product.title}"></td>
         <td th:text="${product.description}"></td>

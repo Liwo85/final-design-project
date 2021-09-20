@@ -17,16 +17,21 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @GetMapping("/page")
-    public String showAllProducts(Model model){
+    @GetMapping("/mainPage")
+    public String showAllProducts(Model model) {
         List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
         return "page";
     }
-    @PostMapping("/pageAdd")
-    public String addProduct(@ModelAttribute("product") Product product){
-        productRepository.save(product);
-        return "/page_add";
+
+    @GetMapping("/pageAdd")
+    public String addProductForm(@ModelAttribute("product") Product product) {
+        return "page_add_form";
     }
 
+    @PostMapping("/pageAdd")
+    public String addProduct(@ModelAttribute("product") Product product) {
+        productRepository.save(product);
+        return "page_add_result";
+    }
 }
