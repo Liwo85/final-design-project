@@ -1,4 +1,7 @@
-
+.mvn
+pom.xml
+target
+application.properties
 # Created by https://www.toptal.com/developers/gitignore/api/maven,intellij+all,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=maven,intellij+all,windows
 
