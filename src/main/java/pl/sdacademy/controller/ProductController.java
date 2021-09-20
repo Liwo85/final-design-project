@@ -39,20 +39,10 @@ public class ProductController {
         return "page_add_result";
     }
 
-    public static Product getProductById(Integer identification) {
-        List<Product> products = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getId().equals(identification)) {
-                return product;
-            }
-        }
-            return null;
-    }
-
     @GetMapping("/mainPage/{identification}")
     public ModelAndView productDetails(@PathVariable Integer identification) {
         ModelAndView modelAndView = new ModelAndView("single_product_page");
-        modelAndView.addObject("product", ProductController.getProductById(identification));
+        modelAndView.addObject("product", productRepository.getById(identification));
         return modelAndView;
     }
 }
