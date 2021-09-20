@@ -54,7 +54,6 @@ public class ProductController {
     public void editProductById(@RequestBody Product product, @PathVariable Integer identifier) {
         List<Product> products = productRepository.findAll();
         int index = product.getId() - 1;
-
         products.get(index).setTitle(product.getTitle());
         products.get(index).setDescription(product.getDescription());
         products.get(index).setPrice(product.getPrice());
