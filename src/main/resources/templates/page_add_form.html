@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+</head>
+<body>
+<form method="post" autocomplete="off" th:object="${product}">
+  <div>
+    <label>Nazwa: <input type="text" th:field="*{title}"></label>
+  </div>
+  <div>
+    <label>Opis: <input type="text" th:field="*{description}"></label>
+  </div>
+  <div>
+    <label>Cena: <input type="text" th:field="*{price}"></label>
+  </div>
+  <div>
+    <label> Rodzaj produktu: <select name="products" th:field="*{typeOfProduct}">
+      <option value="">--Please choose an option--</option>
+      <option value="BOOKS">Książki</option>
+      <option value="PUZZLE">Puzzle</option>
+      <option value="LEGO_BRICKS">Klocki LEGO</option>
+      <option value="TOY_CARS">Samochodziki</option>
+      <option value="BOARD_GAMES">Gry planszowe</option>
+      <option value="DOLLS">Lalki</option>
+      <option value="STUFFED_ANIMALS">Wypchane zwierzęta</option>
+      <option value="TRAIN_SET">Kolejka</option>
+    </select></label>
+  </div>
+  <input type="submit" value="Zatwierdź">
+</form>
+</body>
+</html>
