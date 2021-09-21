@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Single product page</title>
+  <meta charset="UTF-8">
+  <title>Single product page</title>
 </head>
 <body>
 
 <table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Nazwa produktu</th>
-        <th>Opis</th>
-        <th>Cena</th>
-        <th>Rodzaj</th>
-    </tr>
-    </thead>
-    <tbody>
-    <td th:text="${product.id}"/>
-    <td th:text="${product.title}"/>
-    <td th:text="${product.description}"/>
-    <td th:text="${product.price}"/>
-    <td th:text="${product.typeOfProduct}"/>
-     </tbody>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nazwa produktu</th>
+    <th>Opis</th>
+    <th>Cena</th>
+    <th>Rodzaj</th>
+    <td>Option</td>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="product: ${product}">
+  <td th:text="${product.id}" />
+  <td th:text="${product.title}"/>
+  <td th:text="${product.description}"/>
+  <td th:text="${product.price}"/>
+  <td th:text="${product.typeOfProduct}"/>
+    <td><a th:href="@{/mainPage/deleteProduct/{id}/(id=${product.id})}" class="btn btn-danger ml-2">Delete</a></td>
+  </tbody>
+  </tr>
 </table>
 
 </body>

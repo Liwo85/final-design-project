@@ -9,21 +9,28 @@
 <table>
     <p><a th:href="@{/login}">Loguj</a></p>
     <p><a th:href="@{/registration}">Zarejestruj</a></p>
+    <p><a th:href="@{/pageAdd}">Dodaj</a></p>
 
     <tr>
+        <th th:hidden="id"></th>
         <th>Nazwa</th>
         <th>Opis</th>
         <th>Cena</th>
         <th>Rodzaj produktu</th>
+        <th>Opcje</th>
     </tr>
 
     <tr th:each="product: ${products}">
+        <form th:action="@{/mainPage/{id} (id=${product.id})}" method="get">
+        <td th:hidden="${product.id}"></td>
         <td th:text="${product.title}"></td>
         <td th:text="${product.description}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.typeOfProduct}"></td>
+        <td> <input type="submit" value="EDYTUJ"/></td>
+        </form>
     </tr>
-</table>
 
+</table>
 </body>
 </html>

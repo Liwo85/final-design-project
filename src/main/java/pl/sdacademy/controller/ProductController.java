@@ -7,14 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sdacademy.model.Product;
 import pl.sdacademy.repository.ProductRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProductController {
 
     private final ProductRepository productRepository;
-
 
 
     public ProductController(ProductRepository productRepository) {
@@ -45,4 +43,27 @@ public class ProductController {
         modelAndView.addObject("product", productRepository.getById(identification));
         return modelAndView;
     }
+
+    @PostMapping("/mainPage/edit/{id}")
+    public ModelAndView editProductById(@PathVariable(name = "id") Integer id) {
+        int index = -1;
+        List<Product> products = productRepository.findAll();
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId().equals(id)) {
+                index = i;
+            }
+        }
+        Product product = products.get(index);
+
+        ModelAndView modelAndView = new ModelAndView("single_product_page_edit");
+        modelAndView.addObject("product", product);
+        return modelAndView;
+    }
+
+    @GetMapping("/mainPage/deleteProduct/{identification}")
+    public String deleteProduct(@PathVariable Integer identification){
+        productRepository.deleteById(identification);
+        return "redirect:/mainPage";
+    }
 }
+
