@@ -21,14 +21,19 @@
     </tr>
 
     <tr th:each="product: ${products}">
-        <form th:action="@{/mainPage/{id} (id=${product.id})}" method="get">
+
         <td th:hidden="${product.id}"></td>
         <td th:text="${product.title}"></td>
         <td th:text="${product.description}"></td>
         <td th:text="${product.price}"></td>
         <td th:text="${product.typeOfProduct}"></td>
-        <td> <input type="submit" value="EDYTUJ"/></td>
-        </form>
+        <td>
+            <a type="button" th:href="@{'/mainPage/edit/' + ${product.id}}">EDYTUJ</a>
+            <form th:action="@{'/mainPage/delete'}" method="post">
+                <input type="hidden" name="id" th:value="${product.id}">
+                <button type="submit" name="action" value="delete">USUŃ</button>
+            </form>
+        </td>
     </tr>
 
 </table>

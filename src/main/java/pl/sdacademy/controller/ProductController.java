@@ -34,35 +34,40 @@ public class ProductController {
     @PostMapping("/pageAdd")
     public String addProduct(@ModelAttribute("product") Product product) {
         productRepository.save(product);
-        return "page_add_result";
+        return "redirect:/mainPage";
     }
 
-    @GetMapping("/mainPage/{identification}")
-    public ModelAndView productDetails(@PathVariable Integer identification) {
-        ModelAndView modelAndView = new ModelAndView("single_product_page");
-        modelAndView.addObject("product", productRepository.getById(identification));
+    @GetMapping("/mainPage/edit/{id}")
+    public ModelAndView productDetails(@PathVariable Integer id) {
+        ModelAndView modelAndView = new ModelAndView("single_product_page_edit");
+        modelAndView.addObject("product", productRepository.getById(id));
         return modelAndView;
     }
 
-    @PostMapping("/mainPage/edit/{id}")
-    public ModelAndView editProductById(@PathVariable(name = "id") Integer id) {
+    @PostMapping(value = "/mainPage/edit/{id}")
+    public ModelAndView editProductById(@PathVariable Integer id, @ModelAttribute("product") Product product) {
         int index = -1;
         List<Product> products = productRepository.findAll();
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getId().equals(id)) {
                 index = i;
+
             }
         }
-        Product product = products.get(index);
+        Product product1 = products.get(index);
+        product1.setPrice(product.getPrice());
+        product1.setDescription(product.getDescription());
+        product1.setTitle(product.getTitle());
+        product1.setTypeOfProduct(product.getTypeOfProduct());
 
-        ModelAndView modelAndView = new ModelAndView("single_product_page_edit");
-        modelAndView.addObject("product", product);
+        ModelAndView modelAndView = new ModelAndView("redirect:/mainPage");
+        modelAndView.addObject("product", product1);
         return modelAndView;
     }
 
-    @GetMapping("/mainPage/deleteProduct/{identification}")
-    public String deleteProduct(@PathVariable Integer identification){
-        productRepository.deleteById(identification);
+    @PostMapping( "/mainPage/delete")
+    public String deleteProduct(@RequestParam int id){
+        productRepository.deleteById(id);
         return "redirect:/mainPage";
     }
 }

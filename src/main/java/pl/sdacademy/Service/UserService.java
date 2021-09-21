@@ -1,4 +1,4 @@
-package pl.sdacademy.Service;
+package pl.sdacademy.service;
 
 import pl.sdacademy.model.User;
 

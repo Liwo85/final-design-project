@@ -1,7 +1,7 @@
-package pl.sdacademy.Service.impl;
+package pl.sdacademy.service.impl;
 
 import org.springframework.stereotype.Service;
-import pl.sdacademy.Service.UserService;
+import pl.sdacademy.service.UserService;
 import pl.sdacademy.model.User;
 import pl.sdacademy.repository.UserRepository;
 
