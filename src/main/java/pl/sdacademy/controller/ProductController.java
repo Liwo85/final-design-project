@@ -16,7 +16,6 @@ public class ProductController {
         this.productService = productService;
     }
 
-
     @GetMapping("/mainPage")
     public String showAllProducts(Model model) {
         model.addAttribute("products", productService.showAllProducts());
