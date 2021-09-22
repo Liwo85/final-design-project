@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="fragments.html::head"></th:block>
     <title>Page</title>
 </head>
 <body>
 
-<table>
-    <p><a th:href="@{/login}">Loguj</a></p>
-    <p><a th:href="@{/registration}">Zarejestruj</a></p>
-    <p><a th:href="@{/pageAdd}">Dodaj</a></p>
+<nav th:replace="fragments.html::nav"></nav>
 
-    <tr>
-        <th th:hidden="id"></th>
-        <th>Nazwa</th>
-        <th>Opis</th>
-        <th>Cena</th>
-        <th>Rodzaj produktu</th>
-        <th>Opcje</th>
-    </tr>
+<div class="container">
 
-    <tr th:each="product: ${products}">
+    <div>
+        <a th:href="@{/pageAdd}" class="btn btn-success mb-3" role="button">Dodaj nowy produkt</a>
+    </div>
 
-        <td th:hidden="${product.id}"></td>
-        <td th:text="${product.title}"></td>
-        <td th:text="${product.description}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.typeOfProduct}"></td>
-        <td>
-            <a type="button" th:href="@{'/mainPage/edit/' + ${product.id}}">EDYTUJ</a>
-            <form th:action="@{'/mainPage/delete'}" method="post">
-                <input type="hidden" name="id" th:value="${product.id}">
-                <button type="submit" name="action" value="delete">USUŃ</button>
-            </form>
-        </td>
-    </tr>
+    <table class="table table-striped table-hover">
 
-</table>
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nazwa produktu</th>
+            <th scope="col">Opis produktu</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Kategoria</th>
+            <th scope="col" style="width: 100px">Edycja</th>
+            <th scope="col" style="width: 100px">Usuwanie</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="product: ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.title}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.typeOfProduct}"></td>
+            <td>
+                <form th:action="@{'/mainPage/edit/'+ ${product.id}}" method="get">
+                    <input type="hidden" name="id" th:value="${product.id}">
+                    <button type="submit" name="action" value="edit" class="btn btn-primary me-auto">Edycja</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{'/mainPage/delete'}" method="post">
+                    <input type="hidden" name="id" th:value="${product.id}">
+                    <button type="submit" name="action" value="delete" class="btn btn-danger">Usuń</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
 </body>
 </html>
