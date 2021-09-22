@@ -1,27 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:replace="fragments.html::my-head"></th:block>
     <title>Title</title>
-
 </head>
 <body>
 
-    <h1>Registration form</h1>
+<!--    <h1>Registration form</h1>-->
 
-    <form method="post" th:action="@{/registration}" th:object="${user}">
-        <td>Login<input autocomplete="off" type="text" th:field="*{username}"></td>
-        <br><td>Hasło<input autocomplete="off" type="password" th:field="*{password}"></td>
-        <br><td>Imię<input type="text" th:field="*{name}"></td>
-        <br><td>Nazwisko<input type="text" th:field="*{lastname}"></td>
-        <br><td>Email<input type="email" th:field="*{email}"></td>
-        <br><td>Country<input type="text" th:field="*{country}"></td>
-        <br><td>City<input type="text" th:field="*{city}"></td>
-        <br><td>Street<input type="text" th:field="*{street}"></td>
-        <br><td>Zip_code<input type="text" th:field="*{zip_code}"></td>
-        <br><td><input type="submit">Zarejestruj</td>
+<!--    <form method="post" th:action="@{/registration}" th:object="${user}">-->
+<!--        <td>Login<input autocomplete="off" type="text" th:field="*{username}"></td>-->
+<!--        <br><td>Hasło<input autocomplete="off" type="password" th:field="*{password}"></td>-->
+<!--        <br><td>Imię<input type="text" th:field="*{name}"></td>-->
+<!--        <br><td>Nazwisko<input type="text" th:field="*{lastname}"></td>-->
+<!--        <br><td>Email<input type="email" th:field="*{email}"></td>-->
+<!--        <br><td>Country<input type="text" th:field="*{country}"></td>-->
+<!--        <br><td>City<input type="text" th:field="*{city}"></td>-->
+<!--        <br><td>Street<input type="text" th:field="*{street}"></td>-->
+<!--        <br><td>Zip_code<input type="text" th:field="*{zip_code}"></td>-->
+<!--        <br><td><input type="submit">Zarejestruj</td>-->
+<!--    </form>-->
+
+<div class="container">
+    <h2 class="my-4">Strona rejestracji użytkownika</h2>
+    <form class="row g-3" method="post" th:action="@{/registration}" th:object="${user}">
+        <div class="col-md-5">
+            <label for="inputFirstName" class="form-label">Imię</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="Jan" aria-label="First name" id="inputFirstName">
+        </div>
+        <div class="col-md-7">
+            <label for="inputLastName" class="form-label">Nazwisko</label>
+            <input type="text" th:field="*{lastname}" class="form-control" placeholder="Kowalski" aria-label="Last name" id="inputLastName">
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" id="inputEmail4">
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Hasło</label>
+            <input type="password" th:field="*{password}" class="form-control" id="inputPassword4">
+        </div>
+        <div class="col-7">
+            <label for="inputAddress" class="form-label">Adres</label>
+            <input type="text" th:field="*{street}" class="form-control" id="inputAddress" placeholder="np. Kolejowa 17/13">
+        </div>
+        <div class="col-md-5">
+            <label for="inputCity" class="form-label">Miasto</label>
+            <input type="text" th:field="*{city}" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-2">
+            <label for="inputZip" class="form-label">Kod pocztowy</label>
+            <input type="text" th:field="*{zip_code}" class="form-control" id="inputZip">
+        </div>
+        <div class="col-md-5">
+            <label for="inputState" class="form-label">Województwo</label>
+            <select id="inputState" class="form-select">
+                <option selected>Wybierz...</option>
+                <option>dolnośląskie</option>
+                <option>kujawsko-pomorskie</option>
+                <option>lubelskie</option>
+                <option>lubuskie</option>
+                <option>łódzkie</option>
+                <option>małopolskie</option>
+                <option>mazowieckie</option>
+                <option>opolskie</option>
+                <option>podkarpackie</option>
+                <option>podlaskie</option>
+                <option>pomorskie</option>
+                <option>śląskie</option>
+                <option>świętokrzyskie</option>
+                <option>warmińsko-mazurskie</option>
+                <option>wielkopolskie</option>
+                <option>zachodnio-pomorskie</option>
+            </select>
+        </div>
+        <div class="col-5">
+            <label for="inputCountry" class="form-label">Kraj</label>
+            <input type="text" th:field="*{country}" class="form-control" id="inputCountry" placeholder="np. Polska">
+        </div>
+        <div class="col-5">
+            <label for="inputUser" class="form-label">User</label>
+            <input type="text" th:field="*{username}" class="form-control" id="inputUser">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Zarejestruj</button>
+        </div>
     </form>
-
+</div>
 
 </body>
 </html>
