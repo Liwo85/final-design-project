@@ -20,7 +20,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
                 .orElseThrow(()->new UsernameNotFoundException("Such user has not been found: " + username));
     }
@@ -29,6 +29,7 @@ public class UserService implements UserDetailsService {
         String encodePassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodePassword);
     }
+
 
     public void save(User user) {
         userRepository.save(user);
