@@ -10,12 +10,17 @@
 
 <div class="container">
     <h2 class="my-4">Strona rejestracji użytkownika</h2>
+
     <form class="row g-3" method="post" th:action="@{/registration}" th:object="${user}">
-        <div class="col-md-5">
+        <div class="col-3">
+            <label for="inputUser" class="form-label">User</label>
+            <input type="text" th:field="*{username}" class="form-control" id="inputUser">
+        </div>
+        <div class="col-md-3">
             <label for="inputFirstName" class="form-label">Imię</label>
             <input type="text" th:field="*{name}" class="form-control" placeholder="Jan" aria-label="First name" id="inputFirstName">
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <label for="inputLastName" class="form-label">Nazwisko</label>
             <input type="text" th:field="*{lastname}" class="form-control" placeholder="Kowalski" aria-label="Last name" id="inputLastName">
         </div>
@@ -64,10 +69,6 @@
         <div class="col-5">
             <label for="inputCountry" class="form-label">Kraj</label>
             <input type="text" th:field="*{country}" class="form-control" id="inputCountry" placeholder="np. Polska">
-        </div>
-        <div class="col-5">
-            <label for="inputUser" class="form-label">User</label>
-            <input type="text" th:field="*{username}" class="form-control" id="inputUser">
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Zarejestruj</button>

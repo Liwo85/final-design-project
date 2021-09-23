@@ -28,9 +28,8 @@ public class RegistrationController {
     public String register(@ModelAttribute User user) {
         userService.encodePassword(user);
         userService.save(user);
-        return "page";
+        return "registration-success";
         }
 
 
 }
-

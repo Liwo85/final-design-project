@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Login page</title>
     <th:block th:replace="fragments.html::head"></th:block>
+    <title>Udana rejestracja</title>
 </head>
 <body>
 
 <nav th:replace="fragments.html::nav"></nav>
 
 <div class="container">
-    <h2 class="my-4">Strona logowania użytkownika</h2>
+    <h1 class="my-4">Rejestracja przebiegła pomyślnie.</h1>
+    <h2 class="my-2">Możesz się zalogować.</h2>
     <form method="post" th:action="@{/login}">
         <div class="form-group">
             <label class="mt-3" for="usr">Użytkownik</label>
