@@ -25,7 +25,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String register(@ModelAttribute User user) {
-        if (userService.existsByUsername(user.getUsername())) {
+        if (userService.loadUserByUsername(user.getUsername().toString())) {
             return "page";
         }
         userService.save(user);
