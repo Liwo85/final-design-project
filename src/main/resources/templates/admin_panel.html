@@ -36,8 +36,10 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.typeOfProduct}"></td>
-            <td th:text="${product.price}"></td>
-<!--            <td class="thumb-image"><img th:src="${product.image}" class="img img-responsive img-fluid" alt=""></td>-->
+            <td class="thumb-image">  <img th:src="@{'/admin/show/'+ ${product.id}}"  >
+
+            </td>
+
             <td>
                 <form th:action="@{'/admin/edit/'+ ${product.id}}" method="get">
                     <input type="hidden" name="id" th:value="${product.id}">
@@ -51,11 +53,11 @@
                 </form>
             </td>
         </tr>
-        </tbody>
+
+               </tbody>
 
     </table>
 
 </div>
-
 </body>
 </html>

@@ -2,6 +2,7 @@ package pl.sdacademy.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,7 @@ public class ProductController {
     @PostMapping("/addProduct")
     @ResponseBody
     public ResponseEntity<?> createProduct(Product product,
-                                    final @RequestParam("image-multipart") MultipartFile file) throws IOException {
+                                           final @RequestParam("image-multipart") MultipartFile file) throws IOException {
         product.setImage(file.getBytes());
         productService.addProduct(product);
         return ResponseEntity.ok("redirect:/admin");
@@ -57,11 +58,12 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/admin";
     }
-    // metoda, która powinna zwrócić do view nasze zdjęcie z DB
-    @GetMapping("/image/show/{id}")
-    String show(Model map, @PathVariable int id) {
 
-        map.addAttribute("images", productService.getActiveImages(id).getImage());
-        return "redirect:/mainPage";
+
+    @GetMapping(path ="/admin/show/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public byte[] showImage(@PathVariable int id) {
+       return productService.getImage(id);
     }
+
 }

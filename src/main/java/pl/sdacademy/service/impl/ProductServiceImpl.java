@@ -39,12 +39,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getActiveImages(int id) {
-        Optional<Product> product = productRepository.findById(id);
-        if(product.isPresent()){
-          Product product1= product.get();
-       return product1;
-    }return null;}
+    public byte[] getImage(int productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        return optionalProduct.map(Product::getImage).orElse(null);
+    }
 
 //    @Override
 //    public Optional<Product> getImageById(Integer id) {return productRepository.findById(id);}
