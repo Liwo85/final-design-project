@@ -60,7 +60,7 @@ public class ProductController {
     }
 
 
-    @GetMapping(path ="/admin/show/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(path ="/admin/show/{id}", produces = MediaType.ALL_VALUE)
     @ResponseBody
     public byte[] showImage(@PathVariable int id) {
        return productService.getImage(id);

@@ -5,7 +5,9 @@
     <title>Add Product</title>
 </head>
 <body>
+
 <nav th:replace="fragments.html::nav"></nav>
+
 <div class="container">
     <h2 class="my-4">Dodawanie nowego produktu</h2>
     <form method="post" autocomplete="off" th:object="${product}" th:action="@{/addProduct}" enctype="multipart/form-data">
@@ -68,5 +70,7 @@
         </div>
     </form>
 </div>
+
+<footer th:replace="fragments.html::footer"></footer>
 </body>
 </html>

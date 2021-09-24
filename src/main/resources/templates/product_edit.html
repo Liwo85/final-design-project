@@ -7,7 +7,9 @@
 </head>
 
 <body>
+
 <nav th:replace="fragments.html::nav"></nav>
+
 <div class="container">
     <h2 class="my-4">Edycja produktu</h2>
     <form method="post" autocomplete="off" th:object="${product}" th:action="@{/addProduct}">
@@ -61,5 +63,7 @@
         </div>
     </form>
 </div>
+
+<footer th:replace="fragments.html::footer"></footer>
 </body>
 </html>

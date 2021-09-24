@@ -36,9 +36,8 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.typeOfProduct}"></td>
-            <td class="thumb-image">  <img th:src="@{'/admin/show/'+ ${product.id}}"  >
-
-            </td>
+            <td><img th:src="@{'/admin/show/'+ ${product.id}}" class="img-fluid img-responsive img-rounded float-left"
+                     style="max-height: 50px; max-width: 50px;" alt="Responsive image"></td>
 
             <td>
                 <form th:action="@{'/admin/edit/'+ ${product.id}}" method="get">
@@ -46,6 +45,7 @@
                     <button type="submit" name="action" value="edit" class="btn btn-primary me-auto">Edycja</button>
                 </form>
             </td>
+
             <td>
                 <form th:action="@{'/admin/delete'}" method="post">
                     <input type="hidden" name="id" th:value="${product.id}">
@@ -53,11 +53,13 @@
                 </form>
             </td>
         </tr>
-
-               </tbody>
+        </tbody>
 
     </table>
 
 </div>
+
+<footer th:replace="fragments.html::footer"></footer>
+
 </body>
 </html>

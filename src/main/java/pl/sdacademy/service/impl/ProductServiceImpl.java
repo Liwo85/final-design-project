@@ -8,6 +8,8 @@ import pl.sdacademy.service.ProductService;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -43,7 +45,4 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         return optionalProduct.map(Product::getImage).orElse(null);
     }
-
-//    @Override
-//    public Optional<Product> getImageById(Integer id) {return productRepository.findById(id);}
 }
