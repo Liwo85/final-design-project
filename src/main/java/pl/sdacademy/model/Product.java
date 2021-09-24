@@ -1,6 +1,7 @@
 package pl.sdacademy.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
@@ -9,18 +10,18 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String title;
+    private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
     private TypeOfProduct typeOfProduct;
 
     public Product(){}
 
-    public Product(Integer id, String title, String description, double price, TypeOfProduct typeOfProduct) {
+    public Product(Integer id, String name, String description, BigDecimal price, TypeOfProduct typeOfProduct) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.description = description;
         this.price = price;
         this.typeOfProduct = typeOfProduct;
@@ -34,12 +35,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String title) {
+        this.name = title;
     }
 
     public String getDescription() {
@@ -50,11 +51,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -71,11 +72,11 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && id.equals(product.id) && title.equals(product.title) && description.equals(product.description) && typeOfProduct == product.typeOfProduct;
+        return id.equals(product.id) && name.equals(product.name) && description.equals(product.description) && price.equals(product.price) && typeOfProduct == product.typeOfProduct;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, price, typeOfProduct);
+        return Objects.hash(id, name, description, price, typeOfProduct);
     }
 }

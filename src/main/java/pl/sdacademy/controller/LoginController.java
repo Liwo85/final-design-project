@@ -13,7 +13,6 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
-
-        return "redirect:/page_add_form";
+        return "redirect:/";
     }
 }

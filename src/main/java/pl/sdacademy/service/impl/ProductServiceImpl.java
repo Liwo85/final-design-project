@@ -1,11 +1,13 @@
 package pl.sdacademy.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 import pl.sdacademy.model.Product;
 import pl.sdacademy.repository.ProductRepository;
 import pl.sdacademy.service.ProductService;
 
-import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -17,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> showAllProducts() {
-        List<Product> products= productRepository.findAll();
+        List<Product> products = productRepository.findAll();
         return products;
     }
 

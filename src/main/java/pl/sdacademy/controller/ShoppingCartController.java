@@ -11,22 +11,22 @@ public class ShoppingCartController {
 
     private ShoppingCart shoppingCart;
 
-    @GetMapping("/mainPage/shoppingCart")
+    @GetMapping("/shoppingCart")
     public ModelAndView shoppingCartForm() {
-        ModelAndView modelAndView = new ModelAndView("shoppingCart");
+        ModelAndView modelAndView = new ModelAndView("shopping_cart");
         modelAndView.addObject("shoppingCart", shoppingCart.getShoppingCart());
         return modelAndView;
     }
 
-    @PostMapping("/mainPage/shoppingCart/add")
+    @PostMapping("/shoppingCart/add")
     public String addProductToShoppingCart(@ModelAttribute("product") Product product, int quantity) {
         shoppingCart.add(product, quantity);
-        return "shoppingCart";
+        return "shopping_cart";
     }
 
-    @PostMapping("/mainPage/shoppingCart/remove")
-    public String removeProductFromCart(@RequestBody Product product){
+    @PostMapping("/shoppingCart/remove")
+    public String removeProductFromCart(@RequestBody Product product) {
         shoppingCart.remove(product);
-        return "redirect:/mainPage/shoppingCart";
+        return "redirect:/shoppingCart";
     }
 }

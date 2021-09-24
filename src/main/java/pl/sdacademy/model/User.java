@@ -1,6 +1,5 @@
 package pl.sdacademy.model;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,32 +17,31 @@ public class User implements UserDetails {
     private Integer id;
     @Column(unique = true)
     private String username;
+    @Column(unique = true)
+    private String email;
     private String password;
     private String name;
     private String lastname;
-    @Column(unique = true)
-    private String email;
-    private String country;
-    private String city;
     private String street;
     private String zip_code;
+    private String city;
+    private String country;
     private String role = "USER";
-
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String name, String lastname, String email, String country, String city, String street, String zip_code) {
+    public User(Integer id, String username, String email, String password, String name, String lastname, String street, String zip_code, String city, String country) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
         this.lastname = lastname;
-        this.email = email;
-        this.country = country;
-        this.city = city;
         this.street = street;
         this.zip_code = zip_code;
+        this.city = city;
+        this.country = country;
     }
 
     public Integer getId() {
@@ -58,33 +56,16 @@ public class User implements UserDetails {
         return username;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -111,30 +92,6 @@ public class User implements UserDetails {
         this.lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getStreet() {
         return street;
     }
@@ -151,16 +108,66 @@ public class User implements UserDetails {
         this.zip_code = zip_code;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(lastname, user.lastname) && Objects.equals(email, user.email) && Objects.equals(country, user.country) && Objects.equals(city, user.city) && Objects.equals(street, user.street) && Objects.equals(zip_code, user.zip_code);
+        return Objects.equals(id, user.id)
+                && Objects.equals(username, user.username)
+                && Objects.equals(email, user.email)
+                && Objects.equals(password, user.password)
+                && Objects.equals(name, user.name)
+                && Objects.equals(lastname, user.lastname)
+                && Objects.equals(street, user.street)
+                && Objects.equals(zip_code, user.zip_code)
+                && Objects.equals(city, user.city)
+                && Objects.equals(country, user.country);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, name, lastname, email, country, city, street, zip_code);
+        return Objects.hash(id, username, email, password, name, lastname, street, zip_code, city, country);
     }
 }

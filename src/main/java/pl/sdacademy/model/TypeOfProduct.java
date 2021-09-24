@@ -10,5 +10,4 @@ public enum TypeOfProduct {
     DOLLS,
     STUFFED_ANIMALS,
     TRAIN_SET
-
 }

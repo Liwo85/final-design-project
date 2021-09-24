@@ -1,6 +1,5 @@
 package pl.sdacademy.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +21,7 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .orElseThrow(()->new UsernameNotFoundException("Such user has not been found: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("Such user has not been found: " + username));
     }
 
     public void encodePassword(User user) {
@@ -30,9 +29,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(encodePassword);
     }
 
-
     public void save(User user) {
         userRepository.save(user);
     }
-
 }

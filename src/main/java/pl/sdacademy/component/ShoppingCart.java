@@ -29,20 +29,17 @@ public class ShoppingCart {
         }
     }
 
-
     public List<ShoppingCartItem> getShoppingCart() {
         return shoppingCart;
     }
 
-    public void remove(Product product){
+    public void remove(Product product) {
         Optional<ShoppingCartItem> optionalItem = shoppingCart.stream()
                 .filter(s -> s.getProduct().getId().equals(product.getId()))
                 .findFirst();
-        if(optionalItem.isPresent()){
+        if (optionalItem.isPresent()) {
             ShoppingCartItem shoppingCartItem = optionalItem.get();
             shoppingCart.remove(shoppingCartItem);
         }
     }
-
-
 }

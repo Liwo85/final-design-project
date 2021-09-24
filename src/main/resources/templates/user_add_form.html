@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <th:block th:replace="fragments.html::head"></th:block>
     <title>Title</title>
+
 </head>
+
 <body>
 
 <nav th:replace="fragments.html::nav"></nav>
 
 <div class="container">
+
     <h2 class="my-4">Strona rejestracji użytkownika</h2>
 
-    <form class="row g-3" method="post" th:action="@{/registration}" th:object="${user}">
-        <div class="col-3">
-            <label for="inputUser" class="form-label">User</label>
-            <input type="text" th:field="*{username}" class="form-control" id="inputUser">
+    <form class="row g-3" method="post" th:action="@{/addUser}" th:object="${user}">
+
+        <div class="col-md-3">
+            <label for="inputUser" class="form-label">Nazwa użytkownika (login)</label>
+            <input type="text" th:field="*{username}" class="form-control" id="inputUser" autocomplete="off">
         </div>
+
         <div class="col-md-3">
             <label for="inputFirstName" class="form-label">Imię</label>
-            <input type="text" th:field="*{name}" class="form-control" placeholder="Jan" aria-label="First name" id="inputFirstName">
+            <input type="text" th:field="*{name}" class="form-control" placeholder="np. Jan" id="inputFirstName">
         </div>
+
         <div class="col-md-6">
             <label for="inputLastName" class="form-label">Nazwisko</label>
-            <input type="text" th:field="*{lastname}" class="form-control" placeholder="Kowalski" aria-label="Last name" id="inputLastName">
+            <input type="text" th:field="*{lastname}" class="form-control" placeholder="np. Kowalski"
+                   id="inputLastName">
         </div>
+
         <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" th:field="*{email}" class="form-control" id="inputEmail4">
+            <label for="inputEmail4" class="form-label">Adres Email</label>
+            <input type="email" th:field="*{email}" class="form-control" placeholder="osoba@domena.com"
+                   id="inputEmail4">
         </div>
+
         <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Hasło</label>
-            <input type="password" th:field="*{password}" class="form-control" id="inputPassword4">
+            <input type="password" th:field="*{password}" class="form-control" placeholder="np. !@#$%^&*()"
+                   id="inputPassword4" autocomplete="off">
         </div>
-        <div class="col-7">
+
+        <div class="col-md-7">
             <label for="inputAddress" class="form-label">Adres</label>
-            <input type="text" th:field="*{street}" class="form-control" id="inputAddress" placeholder="np. Kolejowa 17/13">
+            <input type="text" th:field="*{street}" class="form-control" id="inputAddress"
+                   placeholder="np. Kolejowa 17/13">
         </div>
+
         <div class="col-md-5">
-            <label for="inputCity" class="form-label">Miasto</label>
+            <label for="inputCity" class="form-label">Miejscowość</label>
             <input type="text" th:field="*{city}" class="form-control" id="inputCity">
         </div>
+
         <div class="col-md-2">
             <label for="inputZip" class="form-label">Kod pocztowy</label>
-            <input type="text" th:field="*{zip_code}" class="form-control" id="inputZip">
+            <input type="text" th:field="*{zip_code}" class="form-control" id="inputZip"
+                   placeholder="w formacie: 00-000">
         </div>
+
         <div class="col-md-5">
             <label for="inputState" class="form-label">Województwo</label>
             <select id="inputState" class="form-select">
@@ -66,15 +85,20 @@
                 <option>zachodnio-pomorskie</option>
             </select>
         </div>
+
         <div class="col-5">
             <label for="inputCountry" class="form-label">Kraj</label>
             <input type="text" th:field="*{country}" class="form-control" id="inputCountry" placeholder="np. Polska">
         </div>
+
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Zarejestruj</button>
+            <button type="submit" class="btn btn-primary">Zarejestruj w bazie użytkowników</button>
         </div>
+
     </form>
+
 </div>
 
 </body>
+
 </html>

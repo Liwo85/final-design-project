@@ -16,26 +16,26 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/mainPage")
+    @GetMapping("/admin")
     public String showAllProducts(Model model) {
         model.addAttribute("products", productService.showAllProducts());
-        return "page";
+        return "admin_panel";
     }
 
-    @GetMapping("/pageAdd")
+    @GetMapping("/addProduct")
     public String addProductForm(@ModelAttribute("product") Product product) {
-        return "page_add_form";
+        return "product_add_form";
     }
 
-    @PostMapping("/pageAdd")
+    @PostMapping("/addProduct")
     public String addProduct(@ModelAttribute("product") Product product) {
         productService.addProduct(product);
-        return "redirect:/mainPage";
+        return "redirect:/admin";
     }
 
-    @GetMapping("/mainPage/edit/{id}")
+    @GetMapping("/admin/edit/{id}")
     public ModelAndView productDetails(@PathVariable Integer id) {
-        ModelAndView modelAndView = new ModelAndView("single_product_page_edit");
+        ModelAndView modelAndView = new ModelAndView("product_edit");
         modelAndView.addObject("product", productService.productDetails(id));
         return modelAndView;
     }
@@ -55,10 +55,9 @@ public class ProductController {
 //        return modelAndView;
 //    }
 
-    @PostMapping( "/mainPage/delete")
-    public String deleteProduct(@RequestParam int id){
+    @PostMapping("/admin/delete")
+    public String deleteProduct(@RequestParam int id) {
         productService.deleteProduct(id);
-        return "redirect:/mainPage";
+        return "redirect:/admin";
     }
 }
-

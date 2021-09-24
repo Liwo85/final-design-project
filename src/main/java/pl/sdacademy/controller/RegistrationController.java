@@ -1,6 +1,5 @@
 package pl.sdacademy.controller;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +17,16 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @GetMapping("/registration")
+    @GetMapping("/addUser")
     public String registrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "registration";
+        return "user_add_form";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/addUser")
     public String register(@ModelAttribute User user) {
         userService.encodePassword(user);
         userService.save(user);
-        return "registration-success";
-        }
-
-
+        return "user_add_confirm";
+    }
 }
