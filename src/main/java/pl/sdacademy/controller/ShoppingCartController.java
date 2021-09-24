@@ -1,6 +1,7 @@
 package pl.sdacademy.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sdacademy.component.ShoppingCart;
@@ -11,22 +12,22 @@ public class ShoppingCartController {
 
     private ShoppingCart shoppingCart;
 
-    @GetMapping("/shoppingCart")
-    public ModelAndView shoppingCartForm() {
-        ModelAndView modelAndView = new ModelAndView("shopping_cart");
-        modelAndView.addObject("shoppingCart", shoppingCart.getShoppingCart());
-        return modelAndView;
+    @GetMapping("/orders/shopping_cart")
+    public String shoppingCartForm(Model model) {
+//        ModelAndView modelAndView = new ModelAndView("orders/shopping_cart");
+//        modelAndView.addObject("shoppingCart", shoppingCart.getShoppingCart());
+        return "orders/shopping_cart";
     }
 
-    @PostMapping("/shoppingCart/add")
-    public String addProductToShoppingCart(@ModelAttribute("product") Product product, int quantity) {
-        shoppingCart.add(product, quantity);
-        return "shopping_cart";
-    }
-
-    @PostMapping("/shoppingCart/remove")
-    public String removeProductFromCart(@RequestBody Product product) {
-        shoppingCart.remove(product);
-        return "redirect:/shoppingCart";
-    }
+//    @PostMapping("/orders/shopping_cart/add")
+//    public String addProductToShoppingCart(@ModelAttribute("product") Product product, int quantity) {
+//        shoppingCart.add(product, quantity);
+//        return "shoppingCart";
+//    }
+//
+//    @PostMapping("/orders/shopping_cart/remove")
+//    public String removeProductFromCart(@RequestBody Product product){
+//        shoppingCart.remove(product);
+//        return "redirect:/mainPage/shoppingCart";
+//    }
 }
