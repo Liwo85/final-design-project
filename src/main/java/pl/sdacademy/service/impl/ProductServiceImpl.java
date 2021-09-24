@@ -5,6 +5,9 @@ import pl.sdacademy.model.Product;
 import pl.sdacademy.repository.ProductRepository;
 import pl.sdacademy.service.ProductService;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -36,7 +39,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getActiveImages() {return productRepository.findAll();}
+    public Product getActiveImages(int id) {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isPresent()){
+          Product product1= product.get();
+       return product1;
+    }return null;}
 
 //    @Override
 //    public Optional<Product> getImageById(Integer id) {return productRepository.findById(id);}

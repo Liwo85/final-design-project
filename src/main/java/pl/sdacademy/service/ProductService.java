@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.sdacademy.model.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
 
@@ -17,7 +18,8 @@ public interface ProductService {
 
     public void deleteProduct(int id);
 
-    public List<Product> getActiveImages();
+    public Product getActiveImages(int id);
 
+//    public Optional<Product> getImageById(Integer id);
 
 }

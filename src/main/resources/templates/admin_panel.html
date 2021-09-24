@@ -23,6 +23,7 @@
             <th scope="col">Opis produktu</th>
             <th scope="col">Cena</th>
             <th scope="col">Kategoria</th>
+            <th scope="col">Zdjęcie</th>
             <th scope="col" style="width: 100px">Edycja</th>
             <th scope="col" style="width: 100px">Usuwanie</th>
         </tr>
@@ -35,6 +36,8 @@
             <td th:text="${product.description}"></td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.typeOfProduct}"></td>
+            <td th:text="${product.price}"></td>
+<!--            <td class="thumb-image"><img th:src="${product.image}" class="img img-responsive img-fluid" alt=""></td>-->
             <td>
                 <form th:action="@{'/admin/edit/'+ ${product.id}}" method="get">
                     <input type="hidden" name="id" th:value="${product.id}">

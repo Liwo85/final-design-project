@@ -2,48 +2,64 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Edycja produktu w bazie</title>
+    <th:block th:replace="fragments.html::head"></th:block>
+    <title>Add Product</title>
 </head>
 
 <body>
-
-<form th:action="@{/addProduct}" method="post" th:object="${product}">
-
-    <div>
-        <label><input type="text" th:field="*{id}" th:hidden="${product.id}"></label>
-    </div>
-
-    <div>
-        <label>Nazwa: <input type="text" th:field="*{name}"></label>
-    </div>
-
-    <div>
-        <label>Opis: <input type="text" th:field="*{description}"></label>
-    </div>
-
-    <div>
-        <label>Cena: <input type="text" th:field="*{price}"></label>
-    </div>
-
-    <div>
-        <label>Rodzaj produktu:
-            <select name="products" th:field="*{typeOfProduct}">
-                <option value="">--Please choose an option--</option>
-                <option value="BOOKS">Książki</option>
-                <option value="PUZZLE">Puzzle</option>
-                <option value="LEGO_BRICKS">Klocki LEGO</option>
-                <option value="TOY_CARS">Samochodziki</option>
-                <option value="BOARD_GAMES">Gry planszowe</option>
-                <option value="DOLLS">Lalki</option>
-                <option value="STUFFED_ANIMALS">Wypchane zwierzęta</option>
-                <option value="TRAIN_SET">Kolejka</option>
-            </select>
-        </label>
-    </div>
-
-    <input type="submit" value="Zatwierdź">
-
-</form>
+<nav th:replace="fragments.html::nav"></nav>
+<div class="container">
+    <h2 class="my-4">Edycja produktu</h2>
+    <form method="post" autocomplete="off" th:object="${product}" th:action="@{/addProduct}">
+        <div class="form-group row mt-3">
+            <label><input type="text" th:field="*{id}" th:hidden="${product.id}"></label>
+            <label class="col-sm-2 col-form-label">Nazwa:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="wpisz nazwę produktu..." th:field="*{name}">
+            </div>
+            <div class="col-sm-7">
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label">Opis</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="wpisz opis..." th:field="*{description}">
+            </div>
+            <div class="col-sm-7">
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label">Cena:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control text-secondary" placeholder="wpisz cenę..." th:field="*{price}">
+            </div>
+            <div class="col-sm-7">
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <label class="col-sm-2 col-form-label"> Rodzaj produktu:</label>
+            <div class="col-sm-4">
+                <select class="form-control text-secondary" name="products" th:field="*{typeOfProduct}">
+                    <option value=""> --- Please choose an option --- </option>
+                    <option value="BOOKS">Książki</option>
+                    <option value="PUZZLE">Puzzle</option>
+                    <option value="LEGO_BRICKS">Klocki LEGO</option>
+                    <option value="TOY_CARS">Samochodziki</option>
+                    <option value="BOARD_GAMES">Gry planszowe</option>
+                    <option value="DOLLS">Lalki</option>
+                    <option value="STUFFED_ANIMALS">Wypchane zwierzęta</option>
+                    <option value="TRAIN_SET">Kolejka</option>
+                </select>
+            </div>
+            <div class="col-sm-7">
+            </div>
+        </div>
+        <div class="form-group row mt-3">
+            <div class="col-sm-10">
+                <input type="submit" value="Edytuj" class="btn btn-success me-auto">
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

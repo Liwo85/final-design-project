@@ -42,7 +42,7 @@ public class ProductController {
                                     final @RequestParam("image-multipart") MultipartFile file) throws IOException {
         product.setImage(file.getBytes());
         productService.addProduct(product);
-        return ResponseEntity.ok("OK!");
+        return ResponseEntity.ok("redirect:/admin");
     }
 
     @GetMapping("/admin/edit/{id}")
@@ -57,11 +57,11 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/admin";
     }
+    // metoda, która powinna zwrócić do view nasze zdjęcie z DB
+    @GetMapping("/image/show/{id}")
+    String show(Model map, @PathVariable int id) {
 
-    @GetMapping("/image/show")
-    String show(Model map) {
-        List<Product> images = productService.getActiveImages();
-        map.addAttribute("images", images);
+        map.addAttribute("images", productService.getActiveImages(id).getImage());
         return "redirect:/mainPage";
     }
 }
