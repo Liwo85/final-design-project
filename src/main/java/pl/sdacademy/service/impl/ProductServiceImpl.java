@@ -1,9 +1,6 @@
 package pl.sdacademy.service.impl;
 
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 import pl.sdacademy.model.Product;
 import pl.sdacademy.repository.ProductRepository;
 import pl.sdacademy.service.ProductService;
@@ -37,4 +34,10 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(int id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public List<Product> getActiveImages() {return productRepository.findAll();}
+
+//    @Override
+//    public Optional<Product> getImageById(Integer id) {return productRepository.findById(id);}
 }

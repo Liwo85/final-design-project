@@ -16,4 +16,8 @@ public interface ProductService {
     public Product productDetails(Integer id);
 
     public void deleteProduct(int id);
+
+    public List<Product> getActiveImages();
+
+
 }

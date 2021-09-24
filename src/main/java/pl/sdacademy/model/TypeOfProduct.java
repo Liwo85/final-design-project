@@ -9,5 +9,5 @@ public enum TypeOfProduct {
     BOARD_GAMES,
     DOLLS,
     STUFFED_ANIMALS,
-    TRAIN_SET
+    TRAIN_SET,
 }

@@ -17,15 +17,10 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private TypeOfProduct typeOfProduct;
 
-    public Product(){}
+    @Column(length = Integer.MAX_VALUE, nullable = false)
+    @Lob
+    private byte[] image;
 
-    public Product(Integer id, String name, String description, BigDecimal price, TypeOfProduct typeOfProduct) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.typeOfProduct = typeOfProduct;
-    }
 
     public Integer getId() {
         return id;
@@ -67,16 +62,11 @@ public class Product {
         this.typeOfProduct = typeOfProduct;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id.equals(product.id) && name.equals(product.name) && description.equals(product.description) && price.equals(product.price) && typeOfProduct == product.typeOfProduct;
+    public byte[] getImage() {
+        return image;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, price, typeOfProduct);
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

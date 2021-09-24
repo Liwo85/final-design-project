@@ -1,11 +1,20 @@
 package pl.sdacademy.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sdacademy.model.Product;
 import pl.sdacademy.service.ProductService;
+import pl.sdacademy.service.impl.ProductServiceImpl;
+
+import java.io.IOException;
+import java.util.List;
+
 
 @Controller
 public class ProductController {
@@ -28,9 +37,12 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(@ModelAttribute("product") Product product) {
+    @ResponseBody
+    public ResponseEntity<?> createProduct(Product product,
+                                    final @RequestParam("image-multipart") MultipartFile file) throws IOException {
+        product.setImage(file.getBytes());
         productService.addProduct(product);
-        return "redirect:/admin";
+        return ResponseEntity.ok("OK!");
     }
 
     @GetMapping("/admin/edit/{id}")
@@ -39,25 +51,17 @@ public class ProductController {
         modelAndView.addObject("product", productService.productDetails(id));
         return modelAndView;
     }
-//      Metoda do edycji produktu po wyszukiwaniu
-//    @PostMapping(value = "/mainPage/edit/{id}")
-//    public ModelAndView editProductById(@PathVariable Integer id, @ModelAttribute("product") Product product) {
-//        Product product1 = productRepository.findById(id).orElseThrow(() -> {
-//            throw new RuntimeException("Brak produktu o id " + id);
-//        });
-//        product1.setPrice(product.getPrice());
-//        product1.setDescription(product.getDescription());
-//        product1.setTitle(product.getTitle());
-//        product1.setTypeOfProduct(product.getTypeOfProduct());
-//        productRepository.save(product1);
-//        ModelAndView modelAndView = new ModelAndView("redirect:/mainPage");
-//        modelAndView.addObject("product", product1);
-//        return modelAndView;
-//    }
 
     @PostMapping("/admin/delete")
     public String deleteProduct(@RequestParam int id) {
         productService.deleteProduct(id);
         return "redirect:/admin";
+    }
+
+    @GetMapping("/image/show")
+    String show(Model map) {
+        List<Product> images = productService.getActiveImages();
+        map.addAttribute("images", images);
+        return "redirect:/mainPage";
     }
 }
