@@ -12,7 +12,7 @@
 
 <div class="container">
     <h2 class="my-4">Edycja produktu</h2>
-    <form method="post" autocomplete="off" th:object="${product}" th:action="@{/addProduct}">
+    <form method="post" autocomplete="off" th:object="${product}" th:action="@{/admin/edit/}">
         <div class="form-group row mt-3">
             <label><input type="text" th:field="*{id}" th:hidden="${product.id}"></label>
             <label class="col-sm-2 col-form-label">Nazwa:</label>

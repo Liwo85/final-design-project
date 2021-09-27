@@ -32,12 +32,11 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    @ResponseBody
-    public ResponseEntity<?> createProduct(
+        public String createProduct(
             Product product, final @RequestParam("image-multipart") MultipartFile file) throws IOException {
         product.setImage(file.getBytes());
         productService.addProduct(product);
-        return ResponseEntity.ok("redirect:/admin");
+        return "redirect:/admin";
     }
 
     @GetMapping("/admin/edit/{id}")
