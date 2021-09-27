@@ -24,15 +24,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link active" th:href="@{/mainPage}">Panel administracyjny</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{/login}">Logowanie</a>-->
-<!--                </li>-->
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Logowanie</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/addUser}">Rejestracja</a>
                 </li>
@@ -59,15 +50,16 @@
 
             <form sec:authorize="isAnonymous()" class="d-md-flex" th:action="@{/}" method="post" autocomplete="off">
                 <label class="visually-hidden" for="login">Login</label>
-                <input class="form-control me-1" name="username" type="text" placeholder="login" id="login">
+                <input class="form-control me-1" name="username" type="text" placeholder="Email lub nazwa użytkownika" id="login">
                 <label class="visually-hidden" for="password">Hasło</label>
-                <input class="form-control me-1" name="password" type="password" placeholder="hasło" id="password">
+                <input class="form-control me-1" name="password" type="password" placeholder="No bez jaj!!! Admin???" id="password">
                 <button class="btn btn-outline-primary me-5" type="submit">Zaloguj</button>
             </form>
-            <!--            <form class="d-flex">-->
-            <!--                <input class="form-control me-2" type="search" placeholder="Search">-->
-            <!--                <button class="btn btn-outline-success me-5" type="submit">Search</button>-->
-            <!--            </form>-->
+            <div sec:authorize="isAuthenticated()">
+                <form method="post" th:action="@{/logout}">Zalogowany jako: <strong sec:authentication="name"></strong>
+                    <input type="submit" value="Wyloguj" class="ms-3 btn btn-outline-primary">
+                </form>
+            </div>
         </div>
     </div>
 </nav>
