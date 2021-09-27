@@ -45,7 +45,6 @@
                     <button type="submit" name="action" value="edit" class="btn btn-primary me-auto">Edycja</button>
                 </form>
             </td>
-
             <td>
                 <form th:action="@{'/admin/delete'}" method="post">
                     <input type="hidden" name="id" th:value="${product.id}">
@@ -53,7 +52,8 @@
                 </form>
             </td>
         </tr>
-        </tbody>
+
+               </tbody>
 
     </table>
 
