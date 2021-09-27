@@ -27,12 +27,12 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/addUser}" sec:authorize="isAnonymous()">Rejestracja</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown">
                         Profil
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" >
                         <li><a class="dropdown-item" th:href="@{/admin}">Lista produktów</a></li>
                         <li><a class="dropdown-item" th:href="@{/addProduct}">Dodaj nowy produkt</a></li>
                         <li>
